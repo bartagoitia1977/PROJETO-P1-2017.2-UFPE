@@ -166,9 +166,11 @@ def loGOco(USR,ACT):
     if (ACT == 20):
         AC = "Cadastro usuario."
     if (ACT == 21):
-        AC = "Cadastro usuario: Nivel de acesso."
+        AC = "Cadastro usuario: Alterou senha."
     if (ACT == 22):
         AC = "Remocao usuario."
+    if (ACT == 23):
+        AC = "Cadastro usuario: Alterou nivel acesso."
     if (ACT == 3):
         AC = "Cadastro cliente."
     if (ACT == 4):
@@ -179,6 +181,8 @@ def loGOco(USR,ACT):
         AC = "Atualizacao cliente."
     if (ACT == 7):
         AC = "Impressao arquivo."
+    if (ACT == 71):
+        AC = "Consulta log."
     if (ACT == 8):
         AC = "Saida do sistema."
 
@@ -210,6 +214,8 @@ ELESTR = ELE.read()
 Data_Dic = CHRISTUS(ELESTR)
 Log_Occur = ""
 Log_STR = ""
+USREXTSTR = ""
+ELEEXTSTR = ""
 
 #LEITOR DO LOG
 LOGGYR = open("log.txt","r")
@@ -244,6 +250,9 @@ for ls in LS:
         THREE = ""
         ww = ""
 
+print(User_Dic)
+print(Data_Dic)
+
 #MAGIC BEGINS
 Maain_Loop = True
 User_OK = False
@@ -263,6 +272,14 @@ while (Maain_Loop == True):
             Log_STR = GERALOG(Log_List)
             LOGGY.write(Log_STR)
             LOGGY.close()
+            USREXTSTR = ELEISSON(User_Dic)
+            USY = open("usuarios.txt", "w")
+            USY.write(USREXTSTR)
+            USY.close()
+            ELEEXTSTR = ELEISSON(Data_Dic)
+            ELY = open("elementos.txt", "w")
+            ELY.write(ELEEXTSTR)
+            ELY.close()
 
     for u in User_Dic.keys():
         if (u == User_Current):
@@ -294,7 +311,6 @@ while (Maain_Loop == True):
             if (User_Power == 4) or (User_Power == 3):
                 print("***DIGITE A OPCAO DESEJADA***" + "\n")
                 print("cr - CADASTRO DE USUARIO")
-                print("ru - REMOCAO DE USUARIO")
                 print("cc - CADASTRO DE CLIENTE")
                 print("cl - CONSULTA DE CLIENTES")
                 print("lo - LOGOUT")
@@ -322,6 +338,15 @@ while (Maain_Loop == True):
                 Log_STR = GERALOG(Log_List)
                 LOGGY.write(Log_STR)
                 LOGGY.close()
+                USREXTSTR = ELEISSON(User_Dic)
+                USY = open("usuarios.txt","w")
+                USY.write(USREXTSTR)
+                USY.close()
+                ELEEXTSTR = ELEISSON(Data_Dic)
+                ELY = open("elementos.txt","w")
+                ELY.write(ELEEXTSTR)
+                ELY.close()
+
 
             #LOGOUT
             if (oPtion == "lo"):
@@ -330,7 +355,105 @@ while (Maain_Loop == True):
                 Log_Occur = loGOco(User_Current, 12)
                 Log_List.append(Log_Occur)
 
+            #CADASTRO DE USUARIO
+            if (oPtion == "cr"):
+                lcr = True
+                cr_count = 0
+                LUSR = []
+                TUPU = ""
+                CR_oPtion = ""
+                while (lcr == True):
+                    if (User_Power == 4) or (User_Power == 3):
+                        print("***CADASTRO DE USUARIO***"+"\n")
+                        print("ad - CADASTRAR NOVO USUARIO")
+                        print("as - ALTERAR SENHA")
+                        print("ru - REMOVER USUARIO")
+                        if (User_Power == 4):
+                            print("nv - ALTERAR NIVEL DE USUARIO")
+                        print("sair - SAIR"+"\n")
+                        if (User_Power == 3):
+                            print("\n")
+                    CR_oPtion = str(input("OPCAO>"))
+                    if (CR_oPtion == "ad"):
+                        if (User_Power == 4) or (User_Power == 3):
+                            NU = True
+                            while (NU == True):
+                                New_User = str(input("Digite o nome do novo usuario:"))
+                                if (New_User == "") or (New_User == " ") or (New_User in User_Dic) or (New_User == User_Current):
+                                    NU = True
+                                else:
+                                    NU = False
+                            NP = True
+                            while (NP == True):
+                                New_Password = str(input("Digite a senha do novo usuario:"))
+                                if (New_User == ""):
+                                    NP = True
+                                else:
+                                    NP = False
+                            if (User_Power == 4):
+                                pinG = True
+                                while (pinG == True):
+                                    New_UserLevel = str(input("Digite 3 para Gerente, 2 para Tecnico ou 1 para Estagiario:"))
+                                    if (New_UserLevel != "4") and (New_UserLevel != "3") and (New_UserLevel != "2") and (New_UserLevel != "1"):
+                                        print("Nivel invalido."+"\n")
+                                        pinG = True
+                                    else:
+                                        pinG = False
+                            if (User_Power == 3):
+                                New_UserLevel = "1"
 
+                            print ("Novo usuario:",New_User)
+                            print ("Senha:", New_Password)
+                            if (User_Power == 4):
+                                if (New_UserLevel == "1"):
+                                    print("Estagiario"+"\n")
+                                if (New_UserLevel == "2"):
+                                    print("Tecnico"+"\n")
+                                if (New_UserLevel == "3"):
+                                    print("Gerente"+"\n")
+                            if (User_Power == 3):
+                                print("Estagiario"+"\n")
+                            Ky = "a"
+                            while (Ky != "s") and (Ky != "n") and (Ky != "S") and (Ky != "N"):
+                                Ky = str(input("Confirma? (s/n):"))
+                                if (Ky == "s") or (Ky == "S"):
+                                    print("Usuario cadastrado com sucesso!"+"\n")
+                                    User_Dic[New_User] = (New_Password,New_UserLevel)
+                                    Log_Occur = loGOco(User_Current, 20)
+                                    Log_List.append(Log_Occur)
+                                    lcr = False
+                                if (Ky == "n") or (Ky == "N"):
+                                    print("Operacao cancelada!"+"\n")
+                                    lcr = True
+                    if (CR_oPtion == "sair"):
+                        lcr = False
+
+                    if (CR_oPtion == "ru"):
+                        delly = True
+                        while (delly == True):
+                            NO_User = str(input("Digite o nome do usuario a ser removido:"))
+                            if (NO_User in User_Dic) and (NO_User != "adm") and (NO_User != User_Current):
+                                deaty = True
+                                while (deaty == True):
+                                    Kd = str(input("Confirma? (s/n)"))
+                                    if (Kd == "s") or (Kd == "S"):
+                                        User_Dic.pop(NO_User)
+                                        Log_Occur = loGOco(User_Current, 22)
+                                        Log_List.append(Log_Occur)
+                                        print("Usuario removido com sucesso!"+"\n")
+                                        deaty = False
+                                        delly = False
+                                    if (Kd == "N") or (Kd == "n"):
+                                        print("\n")
+                                        delly = False
+                                        deaty = False
+                            else:
+                                delly = True
+                                print("Usuario invalido!"+"\n")
+
+                    if (CR_oPtion != "ad") and (CR_oPtion != "as") and (CR_oPtion != "ru") and (CR_oPtion != "nv") and (CR_oPtion != "sair"):
+                        lcr = True
+                        print("Opcao invalida!"+"\n")
 
 
 
