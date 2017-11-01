@@ -171,6 +171,8 @@ def loGOco(USR,ACT):
         AC = "Remocao usuario."
     if (ACT == 23):
         AC = "Cadastro usuario: Alterou nivel acesso."
+    if (ACT == 24):
+        AC = "Consulta usuario."
     if (ACT == 3):
         AC = "Cadastro cliente."
     if (ACT == 4):
@@ -200,6 +202,36 @@ def GERALOG(LIST):
                 STR_LOG += "_"
         STR_LOG += "\n"
     return (STR_LOG)
+
+#MAIOR NUMERO DO DICIONARIO
+def Maior_Numero(DIC):
+    L_Keys = []
+    for nm in DIC.keys():
+        L_Keys.append(int(nm))
+    ct = -1
+    for xz in L_Keys:
+        ct += 1
+    n1 = 0
+    n2 = 0
+    nM = 0
+    cl = 0
+    if (ct == 0):
+        nM = L_Keys[0]
+    else:
+        for oo in range(ct):
+            n1 = (L_Keys[cl])
+            if (nM > n1):
+                n1 = nM
+            n2 = (L_Keys[cl + 1])
+            if (n1 <= n2):
+                nM = n2
+            if (n1 >= n2):
+                nM = n1
+            cl += 1
+    return(nM)
+
+
+
 
 #NUCLEO PRINCIPAL
 
@@ -250,9 +282,6 @@ for ls in LS:
         THREE = ""
         ww = ""
 
-print(User_Dic)
-print(Data_Dic)
-
 #MAGIC BEGINS
 Maain_Loop = True
 User_OK = False
@@ -262,7 +291,8 @@ while (Maain_Loop == True):
     ct = 0
     #LOGIN
     print("***LOGIN***"+"\n")
-    User_Current = str(input("Usuario (digite 'sair' para sair):"))
+    print("Digite o nome de usuario ou 'sair' para sair."+"\n")
+    User_Current = str(input("Usuario:"))
     if (User_Current != "sair"):
         User_Password = str(input("Senha:"))
     else:
@@ -311,19 +341,20 @@ while (Maain_Loop == True):
             if (User_Power == 4) or (User_Power == 3):
                 print("***DIGITE A OPCAO DESEJADA***" + "\n")
                 print("cr - CADASTRO DE USUARIO")
-                print("cc - CADASTRO DE CLIENTE")
-                print("cl - CONSULTA DE CLIENTES")
+                print("cc - CADASTRO DE CLIENTES")
+                print("cl - CONSULTA CLIENTES")
+                print("cg - CONSULTA LOG")
                 print("lo - LOGOUT")
                 print("sair - SAIR DO SISTEMA"+"\n")
             if (User_Power == 2):
                 print("***DIGITE A OPCAO DESEJADA***" + "\n")
-                print("cc - CADASTRO DE CLIENTE")
-                print("cl - CONSULTA DE CLIENTES")
+                print("cc - CADASTRO DE CLIENTES")
+                print("cl - CONSULTA CLIENTES")
                 print("lo - LOGOUT")
                 print("sair - SAIR DO SISTEMA"+"\n")
             if (User_Power == 1):
                 print("***DIGITE A OPCAO DESEJADA***" + "\n")
-                print("cl - CONSULTA DE CLIENTES")
+                print("cl - CONSULTA CLIENTES")
                 print("lo - LOGOUT")
                 print("sair - SAIR DO SISTEMA"+"\n")
             oPtion = str(input("OPCAO>"))
@@ -358,7 +389,6 @@ while (Maain_Loop == True):
             #CADASTRO DE USUARIO
             if (oPtion == "cr"):
                 lcr = True
-                cr_count = 0
                 LUSR = []
                 TUPU = ""
                 CR_oPtion = ""
@@ -368,92 +398,366 @@ while (Maain_Loop == True):
                         print("ad - CADASTRAR NOVO USUARIO")
                         print("as - ALTERAR SENHA")
                         print("ru - REMOVER USUARIO")
+                        print("su - MOSTRAR USUARIOS")
                         if (User_Power == 4):
                             print("nv - ALTERAR NIVEL DE USUARIO")
                         print("sair - SAIR"+"\n")
-                        if (User_Power == 3):
-                            print("\n")
+                        
                     CR_oPtion = str(input("OPCAO>"))
+
                     if (CR_oPtion == "ad"):
                         if (User_Power == 4) or (User_Power == 3):
                             NU = True
                             while (NU == True):
                                 New_User = str(input("Digite o nome do novo usuario:"))
-                                if (New_User == "") or (New_User == " ") or (New_User in User_Dic) or (New_User == User_Current):
-                                    NU = True
-                                else:
+                                if (New_User == "sair"):
                                     NU = False
-                            NP = True
-                            while (NP == True):
-                                New_Password = str(input("Digite a senha do novo usuario:"))
-                                if (New_User == ""):
-                                    NP = True
                                 else:
-                                    NP = False
-                            if (User_Power == 4):
-                                pinG = True
-                                while (pinG == True):
-                                    New_UserLevel = str(input("Digite 3 para Gerente, 2 para Tecnico ou 1 para Estagiario:"))
-                                    if (New_UserLevel != "4") and (New_UserLevel != "3") and (New_UserLevel != "2") and (New_UserLevel != "1"):
-                                        print("Nivel invalido."+"\n")
-                                        pinG = True
-                                    else:
-                                        pinG = False
-                            if (User_Power == 3):
-                                New_UserLevel = "1"
+                                    if (New_User != "") and (New_User != " ") and (New_User not in User_Dic) and (New_User != User_Current):
+                                        NP = True
+                                        while (NP == True):
+                                            New_Password = str(input("Digite a senha do novo usuario:"))
+                                            if (New_User == ""):
+                                                NP = True
+                                            else:
+                                                NP = False
+                                        if (User_Power == 4):
+                                            pinG = True
+                                            while (pinG == True):
+                                                New_UserLevel = str(input("Digite 3 para Gerente, 2 para Tecnico ou 1 para Estagiario:"))
+                                                if (New_UserLevel != "4") and (New_UserLevel != "3") and (New_UserLevel != "2") and (New_UserLevel != "1"):
+                                                    print("Nivel invalido."+"\n")
+                                                    pinG = True
+                                                else:
+                                                    pinG = False
+                                        if (User_Power == 3):
+                                            New_UserLevel = "1"
 
-                            print ("Novo usuario:",New_User)
-                            print ("Senha:", New_Password)
-                            if (User_Power == 4):
-                                if (New_UserLevel == "1"):
-                                    print("Estagiario"+"\n")
-                                if (New_UserLevel == "2"):
-                                    print("Tecnico"+"\n")
-                                if (New_UserLevel == "3"):
-                                    print("Gerente"+"\n")
-                            if (User_Power == 3):
-                                print("Estagiario"+"\n")
-                            Ky = "a"
-                            while (Ky != "s") and (Ky != "n") and (Ky != "S") and (Ky != "N"):
-                                Ky = str(input("Confirma? (s/n):"))
-                                if (Ky == "s") or (Ky == "S"):
-                                    print("Usuario cadastrado com sucesso!"+"\n")
-                                    User_Dic[New_User] = (New_Password,New_UserLevel)
-                                    Log_Occur = loGOco(User_Current, 20)
-                                    Log_List.append(Log_Occur)
-                                    lcr = False
-                                if (Ky == "n") or (Ky == "N"):
-                                    print("Operacao cancelada!"+"\n")
-                                    lcr = True
+                                        print ("Novo usuario:",New_User)
+                                        print ("Senha:", New_Password)
+                                        if (User_Power == 4):
+                                            if (New_UserLevel == "1"):
+                                                print("Estagiario"+"\n")
+                                            if (New_UserLevel == "2"):
+                                                print("Tecnico"+"\n")
+                                            if (New_UserLevel == "3"):
+                                                print("Gerente"+"\n")
+                                        if (User_Power == 3):
+                                            print("Estagiario"+"\n")
+                                        bb = True
+                                        while (bb == True):
+                                            Ky = str(input("Confirma? (s/n):"))
+                                            if (Ky == "s") or (Ky == "S"):
+                                                print("Usuario cadastrado com sucesso!"+"\n")
+                                                User_Dic[New_User] = (New_Password,New_UserLevel)
+                                                Log_Occur = loGOco(User_Current, 20)
+                                                Log_List.append(Log_Occur)
+                                                lcr = False
+                                                bb = False
+                                                NU = False
+                                            if (Ky == "n") or (Ky == "N"):
+                                                print("Operacao cancelada!"+"\n")
+                                                bb = False
+                                                lcr = False
+                                                NU = False
                     if (CR_oPtion == "sair"):
                         lcr = False
 
-                    if (CR_oPtion == "ru"):
+                    if (CR_oPtion == "ru") and ((User_Power == 4) or (User_Power == 3)):
                         delly = True
                         while (delly == True):
                             NO_User = str(input("Digite o nome do usuario a ser removido:"))
-                            if (NO_User in User_Dic) and (NO_User != "adm") and (NO_User != User_Current):
-                                deaty = True
-                                while (deaty == True):
-                                    Kd = str(input("Confirma? (s/n)"))
-                                    if (Kd == "s") or (Kd == "S"):
-                                        User_Dic.pop(NO_User)
-                                        Log_Occur = loGOco(User_Current, 22)
-                                        Log_List.append(Log_Occur)
-                                        print("Usuario removido com sucesso!"+"\n")
-                                        deaty = False
-                                        delly = False
-                                    if (Kd == "N") or (Kd == "n"):
-                                        print("\n")
-                                        delly = False
-                                        deaty = False
+                            if (NO_User == "sair"):
+                                delly = False
                             else:
-                                delly = True
-                                print("Usuario invalido!"+"\n")
+                                if (NO_User in User_Dic) and (NO_User != "adm") and (NO_User != User_Current):
+                                    deaty = True
+                                    while (deaty == True):
+                                        Kd = str(input("Confirma? (s/n)"))
+                                        if (Kd == "s") or (Kd == "S"):
+                                            User_Dic.pop(NO_User)
+                                            Log_Occur = loGOco(User_Current, 22)
+                                            Log_List.append(Log_Occur)
+                                            print("Usuario removido com sucesso!"+"\n")
+                                            deaty = False
+                                            delly = False
+                                        if (Kd == "N") or (Kd == "n"):
+                                            print("Operacao cancelada!"+"\n")
+                                            delly = False
+                                            deaty = False
+                                else:
+                                    delly = True
+                                    print("Usuario invalido!"+"\n")
 
-                    if (CR_oPtion != "ad") and (CR_oPtion != "as") and (CR_oPtion != "ru") and (CR_oPtion != "nv") and (CR_oPtion != "sair"):
+                    if (CR_oPtion == "as") and ((User_Power == 4) or (User_Power == 3)):
+                        las = True
+                        while (las == True):
+                            print("Alterar senha de usuario.")
+                            Pass_User_Change = str(input("Digite o usuario:"))
+                            if (Pass_User_Change == "sair"):
+                                las = False
+                            else:
+                                if (Pass_User_Change in User_Dic) and (Pass_User_Change != "adm") and (Pass_User_Change != User_Current):
+                                    TupIn = User_Dic[Pass_User_Change]
+                                    Pass_New = str(input("Digite a nova senha:"))
+                                    ll = True
+                                    while (ll == True):
+                                        oppsw = str(input("Confirma? (s/n)"))
+                                        if (oppsw == "S") or (oppsw == "s"):
+                                            PW_Old = TupIn[1]
+                                            TupOut = (Pass_New,PW_Old)
+                                            User_Dic[Pass_User_Change] = TupOut
+                                            Log_Occur = loGOco(User_Current, 21)
+                                            Log_List.append(Log_Occur)
+                                            print ("Senha alterada com sucesso!"+"\n")
+                                            ll = False
+                                            las = False
+                                        if (oppsw == "N") or (oppsw == "n"):
+                                            print ("Operacao cancelada!"+"\n")
+                                            ll = False
+                                            las = False
+
+                    if (CR_oPtion == "nv") and (User_Power == 4):
+                        lnv = True
+                        while (lnv == True):
+                            print("Alterar nivel do usuario.")
+                            LVL_User_Change = str(input("Digite o usuario:"))
+                            if (LVL_User_Change == "sair"):
+                                lnv = False
+                            else:
+                                if (LVL_User_Change in User_Dic) and (LVL_User_Change != "adm") and (LVL_User_Change != User_Current):
+                                    TupyIn = User_Dic[LVL_User_Change]
+                                    print("Escolha: 3 - Gerente, 2 - Técnico ou 1 - Estagiário")
+                                    LVL_New = str(input("Digite o novo nivel:"))
+                                    if (LVL_New != "1") and (LVL_New != "2") and (LVL_New != "3"):
+                                        print("Nivel invalido."+"\n")
+                                        lnv = True
+                                    else:
+                                        ln = True
+                                        while (ln == True):
+                                            oplvl = str(input("Confirma? (s/n)"))
+                                            if (oplvl == "S") or (oplvl == "s"):
+                                                PS_Old = TupyIn[0]
+                                                TupyOut = (PS_Old,LVL_New)
+                                                User_Dic[LVL_User_Change] = TupyOut
+                                                Log_Occur = loGOco(User_Current, 23)
+                                                Log_List.append(Log_Occur)
+                                                print ("Nivel alterado com sucesso!"+"\n")
+                                                ln = False
+                                                lnv = False
+                                            if (oplvl == "N") or (oplvl == "n"):
+                                                print ("Operacao cancelada!"+"\n")
+                                                ln = False
+                                                lnv = False
+
+                    if (CR_oPtion == "su") and ((User_Power == 4) or (User_Power == 3)):
+                        for usyy in User_Dic.keys():
+                            if (usyy == "adm") and (User_Power == 3):
+                                dummy = 0
+                            else:
+                                print("Usuario:",usyy)
+                                print("Senha:",User_Dic[usyy][0])
+                                if (User_Dic[usyy][1] == "1"):
+                                    print("Estagiario"+"\n")
+                                if (User_Dic[usyy][1] == "2"):
+                                    print("Tecnico"+"\n")
+                                if (User_Dic[usyy][1] == "3"):
+                                    print("Gerente"+"\n")
+                                if (User_Dic[usyy][1] == "4") and (User_Power == 4):
+                                    print("Administrador"+"\n")
+                        Log_Occur = loGOco(User_Current,24)
+                        Log_List.append(Log_Occur)
+
+                    if (CR_oPtion != "ad") and (CR_oPtion != "su") and (CR_oPtion != "as") and (CR_oPtion != "ru") and (CR_oPtion != "nv") and (CR_oPtion != "sair"):
                         lcr = True
                         print("Opcao invalida!"+"\n")
+            
+            #CADASTRO DE CLIENTES
+            if (oPtion == "cc") and (User_Power != 1):
+                cc_Loop = True
+                while (cc_Loop == True):
+                    print("***CADASTRO DE CLIENTES***"+"\n")
+                    print("ci - CADASTRAR NOVO CLIENTE")
+                    print("ac - ALTERAR DADOS DE CLIENTE")
+                    print("rc - REMOVER CLIENTE")
+                    print("sair - SAIR"+"\n")
+                    CC_oPtion = str(input("OPCAO>"))
+                    if (CC_oPtion == "sair"):
+                        cc_Loop = False
+                    if (CC_oPtion != "ci") and (CC_oPtion != "ac") and (CC_oPtion != "rc") and (CC_oPtion != "sair"):
+                        cc_Loop = True
+                        print("Opcao invalida!"+"\n")
+                    if (CC_oPtion == "ci"):
+                        CCpk = str(input("Cadastro de novo cliente. Deseja continuar? (s/n):"))
+                        if (CCpk == "n") or (CCpk == "N"):
+                            print("Operacao cancelada!"+"\n")
+                            cc_Loop = True
+                        if (CCpk == "S") or (CCpk == "s"):
+                            pree_loop = True
+                            while (pree_loop == True):
+                                Codcli = str((Maior_Numero(Data_Dic)) + 1)
+                                print ("Codigo de cliente:",Codcli)
+                                Nome_Fantasia = str(input("Nome Fantasia:"))
+                                if (Nome_Fantasia == "sair"):
+                                    pree_loop = False
+                                else:
+                                    Razao_Social = str(input("Razao Social:"))
+                                    Tele = str(input("Telefone:"))
+                                    Nom = str(input("Pessoa de contato:"))
+                                    Ende = str(input("Endereco:"))
+                                    Cida = str(input("Cidade:"))
+                                    Estad = str(input("Estado:"))
+                                    cEp = str(input("CEP.:"))
+                                    eQp = str(input("Equipamento / Modelo:"))
+                                    nSe = str(input("Numero de Serie:"))
+                                    cOntr = str(input("Contrato:"))
+                                    cliente_Data_Tup = (Nome_Fantasia,Razao_Social,Tele,Nom,Ende,Cida,Estad,cEp,eQp,nSe,cOntr)
+                                    print("\n"+"Dados do cliente:"+"\n")
+                                    print("Codigo de cliente:",Codcli)
+                                    print("Nome Fantasia:",Nome_Fantasia)
+                                    print("Razao Social:",Razao_Social)
+                                    print("Telefone:",Tele)
+                                    print("Pessoa de contato:",Nom)
+                                    print("Endereco:",Ende)
+                                    print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                    print("Equipamento / Modelo:",eQp,"   Numero de Serie:",nSe)
+                                    print("Contrato:",cOntr,"\n")
+                                    ooop = str(input("Deseja cadastrar novo cliente? (s/n):"))
+                                    if (ooop == "n") or (ooop == "N"):
+                                        pree_loop = False
+                                        print("Operacao cancelada!"+"\n")
+                                    if (ooop == "s") or (ooop == "S"):
+                                        Data_Dic[Codcli] = cliente_Data_Tup
+                                        Log_Occur = loGOco(User_Current,3)
+                                        Log_List.append(Log_Occur)
+                                        print ("Cliente cadastrado com sucesso!"+"\n")
+                                        pree_loop = False
+                                        cc_Loop = False
+                    if (CC_oPtion == "ac"):
+                        CCpp = str(input("Alterar cadastro de cliente. Deseja continuar? (s/n):"))
+                        if (CCpp == "n") or (CCpp == "N"):
+                            print("Operacao cancelada!"+"\n")
+                            cc_Loop = True
+                        if (CCpp == "S") or (CCpp == "s"):
+                            pre_lop = True
+                            while (pre_lop == True):
+                                Data_Entry_ac = str(input("Digite o codigo de cliente:"))
+                                if (Data_Entry_ac in Data_Dic.keys()):
+                                    Tup_Cliente = Data_Dic[Data_Entry_ac]
+                                    Codcli = Data_Entry_ac
+                                    Nome_Fantasia = Tup_Cliente[0]
+                                    Razao_Social = Tup_Cliente[1]
+                                    Tele = Tup_Cliente[2]
+                                    Nom = Tup_Cliente[3]
+                                    Ende = Tup_Cliente[4]
+                                    Cida = Tup_Cliente[5]
+                                    Estad = Tup_Cliente[6]
+                                    cEp = Tup_Cliente[7]
+                                    eQp = Tup_Cliente[8]
+                                    nSe = Tup_Cliente[9]
+                                    cOntr = Tup_Cliente[10]
+                                    Altera_Dados_Loop = True
+                                    while(Altera_Dados_Loop == True):
+                                        print("\n"+"Dados do cliente:"+"\n")
+                                        print("Codigo de cliente:",Codcli)
+                                        print("Nome Fantasia:",Nome_Fantasia)
+                                        print("Razao Social:",Razao_Social)
+                                        print("Telefone:",Tele)
+                                        print("Pessoa de contato:",Nom)
+                                        print("Endereco:",Ende)
+                                        print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                        print("Equipamento / Modelo:",eQp,"   Numero de Serie:",nSe)
+                                        print("Contrato:",cOntr,"\n")
+                                        print("Selecione qual dado deseja alterar:"+"\n")
+                                        print("1 Nome Fantasia")
+                                        print("2 Razao Social")
+                                        print("3 Telefone")
+                                        print("4 Pessoa de contato")
+                                        print("5 Endereco")
+                                        print("6 Cidade")
+                                        print("7 Estado")
+                                        print("8 CEP")
+                                        print("9 Equipamento / Modelo")
+                                        print("10 Numero de Serie")
+                                        print("11 Contrato")
+                                        print("12 Alterar todos os dados"+"\n")
+                                        Data_Opt = str(input("OPCAO>"))
+                                        if (Data_Opt == "1") or (Data_Opt == "12"):
+                                            Nome_Fantasia = str(input("Nome Fantasia:"))
+                                        if (Data_Opt == "2") or (Data_Opt == "12"):
+                                            Razao_Social = str(input("Razao Social:"))
+                                        if (Data_Opt == "3") or (Data_Opt == "12"):
+                                            Tele = str(input("Telefone:"))
+                                        if (Data_Opt == "4") or (Data_Opt == "12"):
+                                            Nom = str(input("Pessoa de contato:"))
+                                        if (Data_Opt == "5") or (Data_Opt == "12"):
+                                            Ende = str(input("Endereco:"))
+                                        if (Data_Opt == "6") or (Data_Opt == "12"):
+                                            Cida = str(input("Cidade:"))
+                                        if (Data_Opt == "7") or (Data_Opt == "12"):
+                                            Estad = str(input("Estado:"))
+                                        if (Data_Opt == "8") or (Data_Opt == "12"):
+                                            cEp = str(input("CEP.:"))
+                                        if (Data_Opt == "9") or (Data_Opt == "12"):
+                                            eQp = str(input("Equipamento / Modelo:"))
+                                        if (Data_Opt == "10") or (Data_Opt == "12"):
+                                            nSe = str(input("Numero de Serie:"))
+                                        if (Data_Opt == "11") or (Data_Opt == "12"):
+                                            cOntr = str(input("Contrato:"))
+                                        print("\n"+"Novos dados do cliente:"+"\n")
+                                        print("Codigo de cliente:",Codcli)
+                                        print("Nome Fantasia:",Nome_Fantasia)
+                                        print("Razao Social:",Razao_Social)
+                                        print("Telefone:",Tele)
+                                        print("Pessoa de contato:",Nom)
+                                        print("Endereco:",Ende)
+                                        print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                        print("Equipamento / Modelo:",eQp,"   Numero de Serie:",nSe)
+                                        print("Contrato:",cOntr,"\n")
+                                        ppyp = str(input("Deseja alterar mais algum dado? (s/n)"))
+                                        if (ppyp == "s") or (ppyp == "S"):
+                                            Altera_Dados_Loop = True
+                                        else:
+                                            Altera_Dados_Loop = False
+                                            ynloop = True
+                                            while (ynloop == True):
+                                                ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
+                                                if (ac_yn == "n") or (ac_yn == "N"):
+                                                    print("Operacao cancelada!"+"\n")
+                                                    cc_Loop = False
+                                                    pre_lop = False
+                                                    ynloop = False
+                                                if (ac_yn == "s") or (ac_yn == "S"):
+                                                    Tup_Cliente = (Nome_Fantasia,Razao_Social,Tele,Nom,Ende,Cida,Estad,cEp,eQp,nSe,cOntr)
+                                                    Data_Dic[Codcli] = Tup_Cliente
+                                                    Log_Occur = loGOco(User_Current,6)
+                                                    Log_List.append(Log_Occur)
+                                                    print("Dados de Cliente atualizados com sucesso!")
+                                                    cc_Loop = False
+                                                    pre_lop = False
+                                                    ynloop = False
+                                else:
+                                    pre_lop = False
+                                    print("Cliente inexistente!"+"\n")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
