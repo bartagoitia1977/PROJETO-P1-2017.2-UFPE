@@ -1,0 +1,50 @@
+
+Codigo de Cliente: 1
+Nome Fantasia: FOTO XAROPINHO
+Razao Social: FOTO TESTE LTDA ME.
+Telefone: 8134000000
+Pessoa de Contato: Bruno
+Endereco: Rua da Hora, 250, Espinheiro
+Cidade: RECIFE   Estado: PE   CEP.: 51021-000
+Equipamento / Modelo: LP1500  Numero de Serie: 2917613
+Contrato: N
+
+Codigo de Cliente: 3
+Nome Fantasia: Xapuri Foto
+Razao Social: ACREANO COMERCIO FOTOGRAFICO LTDA.
+Telefone: (064) 3106-1110
+Pessoa de Contato: Jovenilson
+Endereco: Rua 3, 255-B, Centro
+Cidade: Xapuri   Estado: AC   CEP.: 72024-000
+Equipamento / Modelo: Fujifilm DL600  Numero de Serie: NFH0000355
+Contrato: S
+
+Codigo de Cliente: 4
+Nome Fantasia: Mais Graph
+Razao Social: Gráfica Mais serviços Gráficos ME.
+Telefone: (084) 3264-1125
+Pessoa de Contato: Ranieri
+Endereco: Rua Midway, 324, Centro
+Cidade: Assu   Estado: RN   CEP.: 59000-000
+Equipamento / Modelo: Mutoh Kona SCH850  Numero de Serie: 1234SC324
+Contrato: N
+
+Codigo de Cliente: 5
+Nome Fantasia: O Sol Nascente em Botafogo
+Razao Social: SOL NASCENTE COM. LTDA.
+Telefone: (021) 3463-2064
+Pessoa de Contato: Alexandre
+Endereco: Rua da Bala Achada, 666, Botafogo
+Cidade: Rio de Janeiro   Estado: RJ   CEP.: 22100-030
+Equipamento / Modelo: Fujifilm LP5700  Numero de Serie: 3145766
+Contrato: 04876
+
+Codigo de Cliente: 6
+Nome Fantasia: Foto CV
+Razao Social: COMANDO VERMELHO PELA ORDEM
+Telefone: (021) 3465-0666
+Pessoa de Contato: Fernandinho
+Endereco: Rua da Rocinha, 666
+Cidade: Rio de Janeiro   Estado: RJ   CEP.: 21000-666
+Equipamento / Modelo: Kalashnikov AK47  Numero de Serie: 666DT
+Contrato: N
