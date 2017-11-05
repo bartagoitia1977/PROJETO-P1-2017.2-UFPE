@@ -274,6 +274,20 @@ def Dados_Cliente_Imp(nc,nof,raz,tel,con,end,cid,est,cep,equ,nus,cot):
     Line9 = "Contrato: " + cot + "\n"
     return (Line1 + Line2 + Line3 + Line4 + Line5 + Line6 + Line7 + Line8 + Line9)
 
+#STRING PARA EXIBICAO LOG
+def LogOPR(tuplalog):
+    usr = tuplalog[0]
+    US = ""
+    for l in usr:
+        if (l != ":"):
+            US += l
+    dathr = tuplalog[1]
+    ocorr = tuplalog[2]
+    print("Usuário:",US)
+    print("Data e hora:",dathr)
+    print("Ocorrência:",ocorr)
+    print("\n")
+
 #NUCLEO PRINCIPAL
 
 #INICIALIZACAO
@@ -402,6 +416,11 @@ while (Maain_Loop == True):
                 print("sair - SAIR DO SISTEMA"+"\n")
             oPtion = str(input("OPÇÃO>"))
 
+            #OPCAO INVALIDA GERAL
+            if (oPtion != "cr") and (oPtion != "cc") and (oPtion != "cl") and (oPtion != "im") and (oPtion != "cg") and (oPtion != "lo") and (oPtion != "sair"):
+                Menu_Loop = True
+                print("Opção inválida!"+"\n")
+
             #SAIDA
             if (oPtion == "sair"):
                 Maain_Loop = False
@@ -496,13 +515,13 @@ while (Maain_Loop == True):
                                                 User_Dic[New_User] = (New_Password,New_UserLevel)
                                                 Log_Occur = loGOco(User_Current, 20)
                                                 Log_List.append(Log_Occur)
-                                                lcr = False
+                                                lcr = True
                                                 bb = False
                                                 NU = False
                                             if (Ky == "n") or (Ky == "N"):
                                                 print("Operação cancelada!"+"\n")
                                                 bb = False
-                                                lcr = False
+                                                lcr = True
                                                 NU = False
                     #SAIR DO SUBMENU USUARIO
                     if (CR_oPtion == "sair"):
@@ -527,10 +546,12 @@ while (Maain_Loop == True):
                                             print("Usuário removido com sucesso!"+"\n")
                                             deaty = False
                                             delly = False
+                                            lcr = True
                                         if (Kd == "N") or (Kd == "n"):
                                             print("Operação cancelada!"+"\n")
                                             delly = False
                                             deaty = False
+                                            lcr = True
                                 else:
                                     delly = True
                                     print("Usuário inválido!"+"\n")
@@ -559,10 +580,12 @@ while (Maain_Loop == True):
                                             print ("Senha alterada com sucesso!"+"\n")
                                             ll = False
                                             las = False
+                                            lcr = True
                                         if (oppsw == "N") or (oppsw == "n"):
                                             print ("Operação cancelada!"+"\n")
                                             ll = False
                                             las = False
+                                            lcr = True
 
                     #ALTERAR NIVEL USUARIO
                     if (CR_oPtion == "nv") and (User_Power == 4):
@@ -593,10 +616,12 @@ while (Maain_Loop == True):
                                                 print ("Nível alterado com sucesso!"+"\n")
                                                 ln = False
                                                 lnv = False
+                                                lcr = True
                                             if (oplvl == "N") or (oplvl == "n"):
                                                 print ("Operação cancelada!"+"\n")
                                                 ln = False
                                                 lnv = False
+                                                lcr = True
 
                     #CONSULTA USUARIOS
                     if (CR_oPtion == "su") and ((User_Power == 4) or (User_Power == 3)):
@@ -616,6 +641,7 @@ while (Maain_Loop == True):
                                     print("Administrador"+"\n")
                         Log_Occur = loGOco(User_Current,24)
                         Log_List.append(Log_Occur)
+                        lcr = True
 
                     if (CR_oPtion != "ad") and (CR_oPtion != "su") and (CR_oPtion != "as") and (CR_oPtion != "ru") and (CR_oPtion != "nv") and (CR_oPtion != "sair"):
                         lcr = True
@@ -653,6 +679,7 @@ while (Maain_Loop == True):
                                 Nome_Fantasia = str(input("Nome Fantasia:"))
                                 if (Nome_Fantasia == "sair"):
                                     pree_loop = False
+                                    cc_Loop = True
                                 else:
                                     Razao_Social = str(input("Razão Social:"))
                                     Tele = str(input("Telefone:"))
@@ -678,6 +705,7 @@ while (Maain_Loop == True):
                                     ooop = str(input("Confirma dados novo cliente? (s/n):"))
                                     if (ooop == "n") or (ooop == "N"):
                                         pree_loop = False
+                                        cc_Loop = True
                                         print("Operação cancelada!"+"\n")
                                     if (ooop == "s") or (ooop == "S"):
                                         Data_Dic[Codcli] = cliente_Data_Tup
@@ -687,7 +715,7 @@ while (Maain_Loop == True):
                                         ops = str(input("Deseja cadastrar mais algum cliente? (s/n)"))
                                         if (ops == "n") or (ops == "N"):
                                             pree_loop = False
-                                            cc_Loop = False
+                                            cc_Loop = True
                                         else:
                                             pree_loop = True
                     
@@ -789,7 +817,7 @@ while (Maain_Loop == True):
                                                     ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
                                                     if (ac_yn == "n") or (ac_yn == "N"):
                                                         print("Operação cancelada!"+"\n")
-                                                        cc_Loop = False
+                                                        cc_Loop = True
                                                         pre_lop = False
                                                         ynloop = False
                                                     if (ac_yn == "s") or (ac_yn == "S"):
@@ -798,11 +826,12 @@ while (Maain_Loop == True):
                                                         Log_Occur = loGOco(User_Current,6)
                                                         Log_List.append(Log_Occur)
                                                         print("Dados de Cliente atualizados com sucesso!"+"\n")
-                                                        cc_Loop = False
+                                                        cc_Loop = True
                                                         pre_lop = False
                                                         ynloop = False
                                     else:
                                         pre_lop = False
+                                        cc_Loop = True
                                         print("Cliente inexistente!"+"\n")
 
                                 if (opr == "2"):
@@ -843,6 +872,7 @@ while (Maain_Loop == True):
                                             if (coddy == "sair"):
                                                 pinky = False
                                                 pre_lop = False
+                                                cc_Loop = True
                                             else:
                                                 if coddy in Liscli:
                                                     Tup_Cliente = Data_Dic[coddy]
@@ -919,7 +949,7 @@ while (Maain_Loop == True):
                                                         ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
                                                         if (ac_yn == "n") or (ac_yn == "N"):
                                                             print("Operação cancelada!"+"\n")
-                                                            cc_Loop = False
+                                                            cc_Loop = True
                                                             pre_lop = False
                                                             pinky = False
                                                             Altera_Dados_Loop = False
@@ -929,7 +959,7 @@ while (Maain_Loop == True):
                                                             Log_Occur = loGOco(User_Current,6)
                                                             Log_List.append(Log_Occur)
                                                             print("Dados de Cliente atualizados com sucesso!"+"\n")
-                                                            cc_Loop = False
+                                                            cc_Loop = True
                                                             pre_lop = False
                                                             pinky = False
                                                             ppyp = str(input("Deseja alterar mais algum dado? (s/n)"))
@@ -937,12 +967,13 @@ while (Maain_Loop == True):
                                                                 Altera_Dados_Loop = True
                                                             else:
                                                                 Altera_Dados_Loop = False
-                                                                cc_Loop = False
+                                                                cc_Loop = True
                                                                 pre_lop = False
                                                                 pinky = False
                                                 else:
                                                     print("Cliente iválido!")
                                                     pinky = True
+                                                    cc_Loop = True
                                     if (Tem_Nos_Dados == 0):
                                         print ("Cliente com Nome Fantasia inexistente!"+"\n")
                                         pre_lop = True
@@ -983,6 +1014,8 @@ while (Maain_Loop == True):
                                         while (pinky == True):
                                             coddy = str(input("Digite o cliente que deseja alterar:"))
                                             if (coddy == "sair"):
+                                                print("Operação cancelada!"+"\n")
+                                                cc_Loop = True
                                                 pinky = False
                                                 pre_lop = False
                                             else:
@@ -1061,7 +1094,7 @@ while (Maain_Loop == True):
                                                         ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
                                                         if (ac_yn == "n") or (ac_yn == "N"):
                                                             print("Operação cancelada!"+"\n")
-                                                            cc_Loop = False
+                                                            cc_Loop = True
                                                             pre_lop = False
                                                             pinky = False
                                                             Altera_Dados_Loop = False
@@ -1071,7 +1104,7 @@ while (Maain_Loop == True):
                                                             Log_Occur = loGOco(User_Current,6)
                                                             Log_List.append(Log_Occur)
                                                             print("Dados de Cliente atualizados com sucesso!"+"\n")
-                                                            cc_Loop = False
+                                                            cc_Loop = True
                                                             pre_lop = False
                                                             pinky = False
                                                             ppyp = str(input("Deseja alterar mais algum dado? (s/n)"))
@@ -1079,7 +1112,7 @@ while (Maain_Loop == True):
                                                                 Altera_Dados_Loop = True
                                                             else:
                                                                 Altera_Dados_Loop = False
-                                                                cc_Loop = False
+                                                                cc_Loop = True
                                                                 pre_lop = False
                                                                 pinky = False
                                                 else:
@@ -1134,12 +1167,13 @@ while (Maain_Loop == True):
                                         if (Death_Angel == "n") or (Death_Angel == "N"):
                                             print("Operação cancelada!"+"\n")
                                             Loop_Death == False
+                                            cc_Loop = True
                                         if (Death_Angel == "s") or (Death_Angel == "S"):
                                             del Data_Dic[Codcli]
                                             Log_Occur = loGOco(User_Current,4)
                                             Log_List.append(Log_Occur)
                                             print("Cliente removido com sucesso!"+"\n")
-                                            cc_Loop = False
+                                            cc_Loop = True
                                             Loop_Death = False
                                     else:
                                         Loop_Death == True
@@ -1180,6 +1214,7 @@ while (Maain_Loop == True):
                                         if (Death_Angel == "n") or (Death_Angel == "N"):
                                             print("Operação cancelada!"+"\n")
                                             Loop_Death == False
+                                            cc_Loop = True
                                         if (Death_Angel == "s") or (Death_Angel == "S"):
                                             pinky = True
                                             while (pinky == True):
@@ -1193,7 +1228,7 @@ while (Maain_Loop == True):
                                                         Log_Occur = loGOco(User_Current,4)
                                                         Log_List.append(Log_Occur)
                                                         print("Cliente removido com sucesso!"+"\n")
-                                                        cc_Loop = False
+                                                        cc_Loop = True
                                                         Loop_Death = False
                                                         pinky = False
                                                     else:
@@ -1240,6 +1275,7 @@ while (Maain_Loop == True):
                                         if (Death_Angel == "n") or (Death_Angel == "N"):
                                             print("Operação cancelada!"+"\n")
                                             Loop_Death == False
+                                            cc_Loop = True
                                         if (Death_Angel == "s") or (Death_Angel == "S"):
                                             pinky = True
                                             while (pinky == True):
@@ -1247,13 +1283,14 @@ while (Maain_Loop == True):
                                                 if (coddy == "sair"):
                                                     pinky = False
                                                     Loop_Death = False
+                                                    cc_Loop = True
                                                 else:
                                                     if coddy in Liscli:
                                                         del Data_Dic[coddy]
                                                         Log_Occur = loGOco(User_Current,4)
                                                         Log_List.append(Log_Occur)
                                                         print("Cliente removido com sucesso!"+"\n")
-                                                        cc_Loop = False
+                                                        cc_Loop = True
                                                         Loop_Death = False
                                                         pinky = False
                                                     else:
@@ -1262,7 +1299,7 @@ while (Maain_Loop == True):
 
                                     if (Tem_Nos_Dados == 0):
                                         print ("Cliente inexistente na cidade escolhida!"+"\n")
-                                        Loop_Death = True
+                                        Loop_Death = True                                      
 
                                 
             #CONSULTA CLIENTE
@@ -1309,7 +1346,7 @@ while (Maain_Loop == True):
                                     print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
                                     print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
                                     print("Contrato:",cOntr,"\n")
-                                CL_Loop = False
+                                CL_Loop = True
                                 Log_Occur = loGOco(User_Current,5)
                                 Log_List.append(Log_Occur)
                             if (Codcli_Entry not in Data_Dic.keys()):
@@ -1348,7 +1385,7 @@ while (Maain_Loop == True):
                                 print ("Cliente com Nome Fantasia inexistente!")
                                 CL_Loop = True
                             else:
-                                CL_Loop = False
+                                CL_Loop = True
                                 Log_Occur = loGOco(User_Current,5)
                                 Log_List.append(Log_Occur)
 
@@ -1385,7 +1422,7 @@ while (Maain_Loop == True):
                                 print ("Cliente inexistente na cidade escolhida!")
                                 CL_Loop = True
                             else:
-                                CL_Loop = False
+                                CL_Loop = True
                                 Log_Occur = loGOco(User_Current,5)
                                 Log_List.append(Log_Occur)
 
@@ -1422,7 +1459,7 @@ while (Maain_Loop == True):
                                 print ("Cliente inexistente no Estado escolhido!")
                                 CL_Loop = True
                             else:
-                                CL_Loop = False
+                                CL_Loop = True
                                 Log_Occur = loGOco(User_Current,5)
                                 Log_List.append(Log_Occur)
 
@@ -1459,7 +1496,7 @@ while (Maain_Loop == True):
                                 print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
                                 print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
                                 print("Contrato:",cOntr,"\n")
-                                CL_Loop = False
+                                CL_Loop = True
                                 Log_Occur = loGOco(User_Current,5)
                                 Log_List.append(Log_Occur)
 
@@ -1513,54 +1550,69 @@ while (Maain_Loop == True):
                     if (yn_Imp != "s") and (yn_Imp != "S") and (yn_Imp != "n") and (yn_Imp != "N"):
                         lupito = True
 
-                            
+            #CONSULTA LOG
+            if (oPtion == "cg") and ((User_Power == 4) or (User_Power == 3)):
+                loop_Log = True
+                while (loop_Log == True):
+                    print("***Consulta Log***"+"\n")
+                    print("1 - Consultar por usuário")
+                    print("2 - Consultar por data"+"\n")
+                    oPlog = str(input("OPÇÃO>"))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    if (oPlog == "1"):
+                        loop_user_log = True
+                        while (loop_user_log == True):
+                            print("\n")
+                            usrr = str(input("Digite o usuário:"))
+                            if (usrr not in User_Dic):
+                                loop_user_log = True
+                                print ("Usuário inexistente!"+"\n")
+                            if (usrr == "sair"):
+                                loop_user_log = False
+                                loop_Log = False
+                                print ("Operação cancelada!"+"\n")
+                            if (usrr in User_Dic):
+                                print("\n")
+                                ppw = (usrr+":")
+                                for tt in Log_List:
+                                    if (ppw == tt[0]):
+                                        LogOPR(tt)
+                                Log_Occur = loGOco(User_Current,71)
+                                Log_List.append(Log_Occur)
+                                loop_user_log = False
+                                loop_Log = False
+                    if (oPlog == "2"):
+                        loop_Date_log = True
+                        while (loop_Date_log == True):
+                            print("\n"+"Favor não digitar o número '0' antes do Dia ou Mês."+"\n")
+                            DAY = str(input("Digite o Dia:"))
+                            if (DAY == "sair"):
+                                print("Operação cancelada!"+"\n")
+                                loop_Date_log = False
+                                loop_Log = False
+                            else:
+                                MONTH = str(input("Digite o Mês:"))
+                                YEAR = str(input("Digite o Ano:"))
+                                DMY = DAY+MONTH+YEAR
+                                dateok = 0
+                                print("\n")
+                                for data in Log_List:
+                                    dmy = data[1]
+                                    dmyexit = ""
+                                    conct = 0
+                                    for chrt in dmy:
+                                        if (chrt != " ") and (chrt != "/") and (conct == 0):
+                                            dmyexit += chrt
+                                        if (chrt == " "):
+                                            conct += 1
+                                    if (DMY == dmyexit):
+                                        LogOPR(data)
+                                        dateok += 1
+                                if (dateok == 0):
+                                    print("Não há log nesta data!"+"\n")
+                                    loop_Date_log = True
+                                if (dateok > 0):
+                                    Log_Occur = loGOco(User_Current,71)
+                                    Log_List.append(Log_Occur)
+                                    loop_Date_log = False
+                                    loop_Log = False
