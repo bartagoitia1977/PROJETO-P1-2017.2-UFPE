@@ -352,3 +352,36 @@ adm:_5/11/2017 - 16:6:34:_Remoção usuário._
 adm:_5/11/2017 - 16:6:39:_Consulta usuário._
 adm:_5/11/2017 - 16:8:57:_Busca cliente._
 adm:_5/11/2017 - 16:9:4:_Saída do sistema._
+adm:_6/11/2017 - 18:15:23:_Login._
+adm:_6/11/2017 - 18:17:27:_Atualização cliente._
+adm:_6/11/2017 - 18:18:14:_Busca cliente._
+adm:_6/11/2017 - 18:18:37:_Impressão arquivo._
+adm:_6/11/2017 - 18:32:56:_Saída do sistema._
+adm:_6/11/2017 - 18:33:26:_Login._
+adm:_6/11/2017 - 18:36:28:_Cadastro cliente._
+adm:_6/11/2017 - 18:37:22:_Saída do sistema._
+adm:_6/11/2017 - 18:38:7:_Login._
+adm:_6/11/2017 - 18:38:23:_Busca cliente._
+adm:_6/11/2017 - 18:38:58:_Impressão arquivo._
+adm:_6/11/2017 - 18:39:2:_Saída do sistema._
+adm:_6/11/2017 - 18:35:7:_Login._
+adm:_6/11/2017 - 18:35:53:_Remoção cliente._
+adm:_6/11/2017 - 18:36:18:_Busca cliente._
+adm:_6/11/2017 - 18:36:56:_Consulta log._
+adm:_6/11/2017 - 18:37:31:_Saída do sistema._
+adm:_6/11/2017 - 18:42:36:_Login._
+adm:_6/11/2017 - 18:43:11:_Consulta log._
+adm:_6/11/2017 - 18:43:38:_Saída do sistema._
+adm:_6/11/2017 - 19:17:27:_Login._
+adm:_6/11/2017 - 19:17:32:_Consulta usuário._
+adm:_6/11/2017 - 19:18:12:_Saída do sistema._
+Tecnico:_6/11/2017 - 19:19:6:_Login._
+Tecnico:_6/11/2017 - 19:19:16:_Impressão arquivo._
+Tecnico:_6/11/2017 - 19:19:21:_Logout._
+Estagiario:_6/11/2017 - 19:19:30:_Login._
+Estagiario:_6/11/2017 - 19:19:37:_Busca cliente._
+Estagiario:_6/11/2017 - 19:19:47:_Logout._
+Gerente:_6/11/2017 - 19:19:54:_Login._
+Gerente:_6/11/2017 - 19:21:36:_Atualização cliente._
+Gerente:_6/11/2017 - 19:21:45:_Impressão arquivo._
+Gerente:_6/11/2017 - 19:21:49:_Saída do sistema._

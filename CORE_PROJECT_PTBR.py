@@ -4,7 +4,7 @@ Centro de Informática (CIn) (http://www.cin.ufpe.br)
 Graduando em Sistemas de Informação
 IF968 - Programação 1
 
-Autor:	Bruno Artagoitia Vicente do Nascimento (bavn)
+Autores:	Bruno Artagoitia Vicente do Nascimento (bavn) e Adriano goncalves de Souza (ags6)
 Email:	bavn@cin.ufpe.br
 Data:	2017-10-22
 
@@ -16,6 +16,12 @@ Copyright(c) 2017 Bruno Artagoitia Vicente do Nascimento
 
 #DESCRIPTOGRAFIA USUARIO
 def XRISTE(FILE):
+    '''
+    Esta funcao descriptografa uma string vinda do arquivo 'usuario.txt'
+    e transforma num dicionario cujas chaves sao os usuarios e os elementos
+    tuplas com a senha de usuario e o nivel do usuario.
+    Ex.: XRISTE(Variavel_string)
+    '''
     u = ""
     p = ""
     l = ""
@@ -58,6 +64,12 @@ def XRISTE(FILE):
 
 #CRIPTOGRAFA USUARIO E ELEMENTOS
 def ELEISSON(DIC3):
+    '''
+    Esta funcao pega os dados de um dicionario formado por chaves cujos elementos sao
+    tuplas e os transforma numa string criptografada formada por codigos ASCII acrescidos 
+    de + 37 e cujo separador e codigo 254 + 37 = 291.
+    Ex.: ELEISSON(Dicionario)
+    '''
     JN = []
     jupla = ""
     for us in DIC3.keys():
@@ -79,6 +91,12 @@ def ELEISSON(DIC3):
 
 #DESCRIPTOGRAFIA ELEMENTOS
 def CHRISTUS(FILE):
+    '''
+    Esta funcao descriptografa uma string vinda do arquivo 'elementos.txt'
+    e transforma num dicionario cujas chaves sao os codigos de cliente e os elementos
+    tuplas com todos os dados de cliente (12 ao todo).
+    Ex.: CHRISTUS(Variavel_string)
+    '''
     nc = ""
     nof = ""
     raz = ""
@@ -157,6 +175,18 @@ def CHRISTUS(FILE):
 
 #TUPLA LOG
 def loGOco(USR,ACT):
+    '''
+    Esta funcao gera uma tupla com 3 dados: [0] : usuario, [1]: data e hora da ocorrencia
+    e [2]: tipo de ocorrencia - isto a partir de dois argumentos: o primeiro o usuario e 
+    o segundo um numero inteiro relatando o tipo de ocorrencia.
+
+    Ex.: loGOco(usuario,numero_inteiro_tipo_ocorrencia)
+
+    Tipo de ocorrencia: 11 - Login, 12 - Logout, 20 - Cadastro usuario, 21 - Cadastro usuario -
+    alterou senha, 22 - Remocao usuario, 23 - Cadastro usuario - altera nivel acesso,
+    24 - Consulta usuario, 3 - Cadastro cliente, 4 - Remocao cliente, 5 - Busca cliente,
+    6 - Atualizacao cliente, 7 - impressao arquivo, 71 - Consulta log, 8 - Saida do sistema.
+    '''
     from datetime import datetime
     AC = ""
     if (ACT == 11):
@@ -194,6 +224,12 @@ def loGOco(USR,ACT):
 
 #STRING PARA ARQUIVO LOG
 def GERALOG(LIST):
+    '''
+    Esta funcao gera uma string legivel a partir de um dicionario de tuplas para
+    ser utilizada no arquivo de log 'log.txt'.
+
+    Ex.: GERALOG(lista_de_log)
+    '''
     STR_LOG = ""
     for tp in LIST:
         for it in tp:
@@ -205,6 +241,12 @@ def GERALOG(LIST):
 
 #MAIOR NUMERO DO DICIONARIO
 def Maior_Numero(DIC):
+    '''
+    Esta funcao analisa qual e o maior numero num dicionario cujas chaves
+    sao strings de numeros inteiros e retorna o maior numero.
+
+    Ex.: Maior_Numero(Dicionario)
+    '''
     L_Keys = []
     for nm in DIC.keys():
         L_Keys.append(int(nm))
@@ -232,6 +274,12 @@ def Maior_Numero(DIC):
 
 #VERIFICA MAIUSCULO E MINUSCULO STRING
 def Mai_Min(entrada,compare):
+    '''
+    Esta funcao compara duas strings com caracteres maiusculos, minusculos ou a mistura de
+    ambos e as compara como iguais ou nao. Retorna True ou False.
+
+    Ex.: Mai_Min(Palavra1,Palavra2)
+    '''
     Lord1 = []
     Lord2 = []
     cont = 0
@@ -263,6 +311,12 @@ def Mai_Min(entrada,compare):
 
 #STRING PARA IMPRESSAO ELEMENTOS
 def Dados_Cliente_Imp(nc,nof,raz,tel,con,end,cid,est,cep,equ,nus,cot):
+    '''
+    Esta funcao gera string impressao especifica de todos os dados de cliente de uma forma legivel
+    a partir de 12 variaveis formadas por strings com os dados especificos.
+    Ex.: Dados_Cliente_Imp(CodigoCliente,NomeFantasia,RazaoSocial,Telefone,Contato,Endereco,Cidade,
+    Estado,CEP,Equipamento,NumerodeSerie,Contrato)
+    '''
     Line1 = "\n" + "Codigo de Cliente: " + nc + "\n"
     Line2 = "Nome Fantasia: " + nof + "\n"
     Line3 = "Razao Social: " + raz + "\n"
@@ -276,6 +330,12 @@ def Dados_Cliente_Imp(nc,nof,raz,tel,con,end,cid,est,cep,equ,nus,cot):
 
 #STRING PARA EXIBICAO LOG
 def LogOPR(tuplalog):
+    '''
+    Esta funcao pega uma tupla de log (usuario,dataehora,ocorrencia) e apresenta para exibicao
+    na tela.
+
+    Ex.: LogOPR(usuario,data_Hora,Ocorrencia)
+    '''
     usr = tuplalog[0]
     US = ""
     for l in usr:
@@ -622,6 +682,11 @@ while (Maain_Loop == True):
                                                 ln = False
                                                 lnv = False
                                                 lcr = True
+                                else:
+                                    print ("Usuário inválido!:","\n")
+                                    ln = False
+                                    lnv = False
+                                    lcr = True
 
                     #CONSULTA USUARIOS
                     if (CR_oPtion == "su") and ((User_Power == 4) or (User_Power == 3)):
@@ -728,111 +793,128 @@ while (Maain_Loop == True):
                         if (CCpp == "S") or (CCpp == "s"):
                             pre_lop = True
                             while (pre_lop == True):
+                                nop = True
                                 print("\n"+"Escolha por:"+"\n")
                                 print("1 - Código de cliente")
                                 print("2 - Nome Fantasia")
-                                print("3 - Cidade"+"\n")
+                                print("3 - Cidade")
+                                print("sair - Sair"+"\n")
                                 opr = str (input("OPÇÃO>"))
-                                if (opr == "1"):
-                                    Data_Entry_ac = str(input("Digite o código de cliente:"))
-                                    if (Data_Entry_ac in Data_Dic.keys()):
-                                        Tup_Cliente = Data_Dic[Data_Entry_ac]
-                                        Codcli = Data_Entry_ac
-                                        Nome_Fantasia = Tup_Cliente[0]
-                                        Razao_Social = Tup_Cliente[1]
-                                        Tele = Tup_Cliente[2]
-                                        Nom = Tup_Cliente[3]
-                                        Ende = Tup_Cliente[4]
-                                        Cida = Tup_Cliente[5]
-                                        Estad = Tup_Cliente[6]
-                                        cEp = Tup_Cliente[7]
-                                        eQp = Tup_Cliente[8]
-                                        nSe = Tup_Cliente[9]
-                                        cOntr = Tup_Cliente[10]
-                                        Altera_Dados_Loop = True
-                                        while(Altera_Dados_Loop == True):
-                                            print("\n"+"Dados do cliente:"+"\n")
-                                            print("Código de cliente:",Codcli)
-                                            print("Nome Fantasia:",Nome_Fantasia)
-                                            print("Razão Social:",Razao_Social)
-                                            print("Telefone:",Tele)
-                                            print("Pessoa de contato:",Nom)
-                                            print("Endereço:",Ende)
-                                            print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
-                                            print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
-                                            print("Contrato:",cOntr,"\n")
-                                            print("Selecione qual dado deseja alterar:"+"\n")
-                                            print("1 Nome Fantasia")
-                                            print("2 Razão Social")
-                                            print("3 Telefone")
-                                            print("4 Pessoa de contato")
-                                            print("5 Endereço")
-                                            print("6 Cidade")
-                                            print("7 Estado")
-                                            print("8 CEP")
-                                            print("9 Equipamento / Modelo")
-                                            print("10 Número de Série")
-                                            print("11 Contrato")
-                                            print("12 Alterar todos os dados"+"\n")
-                                            Data_Opt = str(input("OPÇÃO>"))
-                                            if (Data_Opt == "1") or (Data_Opt == "12"):
-                                                Nome_Fantasia = str(input("Nome Fantasia:"))
-                                            if (Data_Opt == "2") or (Data_Opt == "12"):
-                                                Razao_Social = str(input("Razão Social:"))
-                                            if (Data_Opt == "3") or (Data_Opt == "12"):
-                                                Tele = str(input("Telefone:"))
-                                            if (Data_Opt == "4") or (Data_Opt == "12"):
-                                                Nom = str(input("Pessoa de contato:"))
-                                            if (Data_Opt == "5") or (Data_Opt == "12"):
-                                                Ende = str(input("Endereço:"))
-                                            if (Data_Opt == "6") or (Data_Opt == "12"):
-                                                Cida = str(input("Cidade:"))
-                                            if (Data_Opt == "7") or (Data_Opt == "12"):
-                                                Estad = str(input("Estado:"))
-                                            if (Data_Opt == "8") or (Data_Opt == "12"):
-                                                cEp = str(input("CEP.:"))
-                                            if (Data_Opt == "9") or (Data_Opt == "12"):
-                                                eQp = str(input("Equipamento / Modelo:"))
-                                            if (Data_Opt == "10") or (Data_Opt == "12"):
-                                                nSe = str(input("Número de Série:"))
-                                            if (Data_Opt == "11") or (Data_Opt == "12"):
-                                                cOntr = str(input("Contrato:"))
-                                            print("\n"+"Novos dados do cliente:"+"\n")
-                                            print("Código de cliente:",Codcli)
-                                            print("Nome Fantasia:",Nome_Fantasia)
-                                            print("Razão Social:",Razao_Social)
-                                            print("Telefone:",Tele)
-                                            print("Pessoa de contato:",Nom)
-                                            print("Endereco:",Ende)
-                                            print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
-                                            print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
-                                            print("Contrato:",cOntr,"\n")
-                                            ppyp = str(input("Deseja alterar mais algum dado? (s/n)"))
-                                            if (ppyp == "s") or (ppyp == "S"):
-                                                Altera_Dados_Loop = True
-                                            else:
-                                                Altera_Dados_Loop = False
-                                                ynloop = True
-                                                while (ynloop == True):
-                                                    ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
-                                                    if (ac_yn == "n") or (ac_yn == "N"):
-                                                        print("Operação cancelada!"+"\n")
-                                                        cc_Loop = True
-                                                        pre_lop = False
-                                                        ynloop = False
-                                                    if (ac_yn == "s") or (ac_yn == "S"):
-                                                        Tup_Cliente = (Nome_Fantasia,Razao_Social,Tele,Nom,Ende,Cida,Estad,cEp,eQp,nSe,cOntr)
-                                                        Data_Dic[Codcli] = Tup_Cliente
-                                                        Log_Occur = loGOco(User_Current,6)
-                                                        Log_List.append(Log_Occur)
-                                                        print("Dados de Cliente atualizados com sucesso!"+"\n")
-                                                        cc_Loop = True
-                                                        pre_lop = False
-                                                        ynloop = False
-                                    else:
-                                        pre_lop = False
-                                        cc_Loop = True
-                                        print("Cliente inexistente!"+"\n")
+                                if (opr == "sair"):
+                                    pre_lop = False
+                                else:
+                                    if (opr == "1"):
+                                        Data_Entry_ac = str(input("Digite o código de cliente:"))
+                                        if (Data_Entry_ac in Data_Dic.keys()):
+                                            Tup_Cliente = Data_Dic[Data_Entry_ac]
+                                            Codcli = Data_Entry_ac
+                                            Nome_Fantasia = Tup_Cliente[0]
+                                            Razao_Social = Tup_Cliente[1]
+                                            Tele = Tup_Cliente[2]
+                                            Nom = Tup_Cliente[3]
+                                            Ende = Tup_Cliente[4]
+                                            Cida = Tup_Cliente[5]
+                                            Estad = Tup_Cliente[6]
+                                            cEp = Tup_Cliente[7]
+                                            eQp = Tup_Cliente[8]
+                                            nSe = Tup_Cliente[9]
+                                            cOntr = Tup_Cliente[10]
+                                            Altera_Dados_Loop = True
+                                            while(Altera_Dados_Loop == True):
+                                                print("\n"+"Dados do cliente:"+"\n")
+                                                print("Código de cliente:",Codcli)
+                                                print("Nome Fantasia:",Nome_Fantasia)
+                                                print("Razão Social:",Razao_Social)
+                                                print("Telefone:",Tele)
+                                                print("Pessoa de contato:",Nom)
+                                                print("Endereço:",Ende)
+                                                print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                                print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
+                                                print("Contrato:",cOntr,"\n")
+                                                print("Selecione qual dado deseja alterar:"+"\n")
+                                                print("1 Nome Fantasia")
+                                                print("2 Razão Social")
+                                                print("3 Telefone")
+                                                print("4 Pessoa de contato")
+                                                print("5 Endereço")
+                                                print("6 Cidade")
+                                                print("7 Estado")
+                                                print("8 CEP")
+                                                print("9 Equipamento / Modelo")
+                                                print("10 Número de Série")
+                                                print("11 Contrato")
+                                                print("12 Alterar todos os dados")
+                                                print("sair - Sair"+"\n")
+                                                Data_Opt = str(input("OPÇÃO>"))
+                                                if (Data_Opt == "1") or (Data_Opt == "12"):
+                                                    Nome_Fantasia = str(input("Nome Fantasia:"))
+                                                if (Data_Opt == "2") or (Data_Opt == "12"):
+                                                    Razao_Social = str(input("Razão Social:"))
+                                                if (Data_Opt == "3") or (Data_Opt == "12"):
+                                                    Tele = str(input("Telefone:"))
+                                                if (Data_Opt == "4") or (Data_Opt == "12"):
+                                                    Nom = str(input("Pessoa de contato:"))
+                                                if (Data_Opt == "5") or (Data_Opt == "12"):
+                                                    Ende = str(input("Endereço:"))
+                                                if (Data_Opt == "6") or (Data_Opt == "12"):
+                                                    Cida = str(input("Cidade:"))
+                                                if (Data_Opt == "7") or (Data_Opt == "12"):
+                                                    Estad = str(input("Estado:"))
+                                                if (Data_Opt == "8") or (Data_Opt == "12"):
+                                                    cEp = str(input("CEP.:"))
+                                                if (Data_Opt == "9") or (Data_Opt == "12"):
+                                                    eQp = str(input("Equipamento / Modelo:"))
+                                                if (Data_Opt == "10") or (Data_Opt == "12"):
+                                                    nSe = str(input("Número de Série:"))
+                                                if (Data_Opt == "11") or (Data_Opt == "12"):
+                                                    cOntr = str(input("Contrato:"))
+                                                if (Data_Opt == "sair"):
+                                                    Altera_Dados_Loop = False
+                                                    pre_lop == False
+                                                    cc_Loop == True
+                                                if (Data_Opt != "1") and (Data_Opt != "2") and (Data_Opt != "3") and (Data_Opt != "4") and (Data_Opt != "5") and (Data_Opt != "6") and (Data_Opt != "7") and (Data_Opt != "8") and (Data_Opt != "9") and (Data_Opt != "10") and (Data_Opt != "11") and (Data_Opt != "12") and(Data_Opt != "sair"):
+                                                    print("Opção inválida!")
+                                                    Altera_Dados_Loop = False
+                                                    pre_lop = True
+                                                    nop = False
+
+                                                if (Data_Opt != "sair") and (nop == True):
+                                                    print("\n"+"Novos dados do cliente:"+"\n")
+                                                    print("Código de cliente:",Codcli)
+                                                    print("Nome Fantasia:",Nome_Fantasia)
+                                                    print("Razão Social:",Razao_Social)
+                                                    print("Telefone:",Tele)
+                                                    print("Pessoa de contato:",Nom)
+                                                    print("Endereco:",Ende)
+                                                    print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                                    print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
+                                                    print("Contrato:",cOntr,"\n")
+                                                    ppyp = str(input("Deseja alterar mais algum dado? (s/n)"))
+                                                    if (ppyp == "s") or (ppyp == "S"):
+                                                        Altera_Dados_Loop = True
+                                                    else:
+                                                        Altera_Dados_Loop = False
+                                                        ynloop = True
+                                                        while (ynloop == True):
+                                                            ac_yn = str(input("Deseja atualizar os dados? (s/n)"))
+                                                            if (ac_yn == "n") or (ac_yn == "N"):
+                                                                print("Operação cancelada!"+"\n")
+                                                                cc_Loop = True
+                                                                pre_lop = False
+                                                                ynloop = False
+                                                            if (ac_yn == "s") or (ac_yn == "S"):
+                                                                Tup_Cliente = (Nome_Fantasia,Razao_Social,Tele,Nom,Ende,Cida,Estad,cEp,eQp,nSe,cOntr)
+                                                                Data_Dic[Codcli] = Tup_Cliente
+                                                                Log_Occur = loGOco(User_Current,6)
+                                                                Log_List.append(Log_Occur)
+                                                                print("Dados de Cliente atualizados com sucesso!"+"\n")
+                                                                cc_Loop = True
+                                                                pre_lop = False
+                                                                ynloop = False
+                                        else:
+                                            pre_lop = False
+                                            cc_Loop = True
+                                            print("Cliente inexistente!"+"\n")
 
                                 if (opr == "2"):
                                     Fantasy = str(input("Digite o Nome Fantasia:"))
@@ -1135,69 +1217,33 @@ while (Maain_Loop == True):
                                 print("\n"+"Escolha por:"+"\n")
                                 print("1 - Código de cliente")
                                 print("2 - Nome Fantasia")
-                                print("3 - Cidade"+"\n")
+                                print("3 - Cidade")
+                                print("sair - Sair"+"\n")
                                 opa = str (input("OPÇÃO>"))
-                                if (opa == "1"):
-                                    Death_Chosen = str(input("Digite o código de cliente:"))
-                                    if (Death_Chosen in Data_Dic.keys()):
-                                        Tup_Death = Data_Dic[Death_Chosen]
-                                        Codcli = Death_Chosen
-                                        Nome_Fantasia = Tup_Death[0]
-                                        Razao_Social = Tup_Death[1]
-                                        Tele = Tup_Death[2]
-                                        Nom = Tup_Death[3]
-                                        Ende = Tup_Death[4]
-                                        Cida = Tup_Death[5]
-                                        Estad = Tup_Death[6]
-                                        cEp = Tup_Death[7]
-                                        eQp = Tup_Death[8]
-                                        nSe = Tup_Death[9]
-                                        cOntr = Tup_Death[10]
-                                        print("\n"+"Dados do cliente:"+"\n")
-                                        print("Código de cliente:",Codcli)
-                                        print("Nome Fantasia:",Nome_Fantasia)
-                                        print("Razão Social:",Razao_Social)
-                                        print("Telefone:",Tele)
-                                        print("Pessoa de contato:",Nom)
-                                        print("Endereço:",Ende)
-                                        print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
-                                        print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
-                                        print("Contrato:",cOntr,"\n")
-                                        Death_Angel = str(input("Deseja realmente excluir todos os dados do cliente? (s/n)"))
-                                        if (Death_Angel == "n") or (Death_Angel == "N"):
-                                            print("Operação cancelada!"+"\n")
-                                            Loop_Death == False
-                                            cc_Loop = True
-                                        if (Death_Angel == "s") or (Death_Angel == "S"):
-                                            del Data_Dic[Codcli]
-                                            Log_Occur = loGOco(User_Current,4)
-                                            Log_List.append(Log_Occur)
-                                            print("Cliente removido com sucesso!"+"\n")
-                                            cc_Loop = True
-                                            Loop_Death = False
-                                    else:
-                                        Loop_Death == True
-                                        print("Cliente inexistente!"+"\n")
-                                if (opa == "2"):
-                                    Fantasy = str(input("Digite o Nome Fantasia:"))
-                                    Tem_Nos_Dados = 0
-                                    Liscli = []
-                                    for val in Data_Dic.items():
-                                        vlw = val[1]
-                                        if (Mai_Min(Fantasy,vlw[0]) == True):
-                                            Liscli.append(val[0])
-                                            Codcli = val[0]
-                                            Nome_Fantasia = vlw[0]
-                                            Razao_Social = vlw[1]
-                                            Tele = vlw[2]
-                                            Nom = vlw[3]
-                                            Ende = vlw[4]
-                                            Cida = vlw[5]
-                                            Estad = vlw[6]
-                                            cEp = vlw[7]
-                                            eQp = vlw[8]
-                                            nSe = vlw[9]
-                                            cOntr = vlw[10]
+                                if (opa == "sair"):
+                                    Loop_Death = False
+                                    cc_Loop = True
+                                else:
+                                    if (opa != "1") and (opa != "2") and (opa != "3") and (opa != "sair"):
+                                        print ("Opção inválida!"+"\n")
+                                        Loop_Death = False
+                                        cc_Loop = True
+                                    if (opa == "1"):
+                                        Death_Chosen = str(input("Digite o código de cliente:"))
+                                        if (Death_Chosen in Data_Dic.keys()):
+                                            Tup_Death = Data_Dic[Death_Chosen]
+                                            Codcli = Death_Chosen
+                                            Nome_Fantasia = Tup_Death[0]
+                                            Razao_Social = Tup_Death[1]
+                                            Tele = Tup_Death[2]
+                                            Nom = Tup_Death[3]
+                                            Ende = Tup_Death[4]
+                                            Cida = Tup_Death[5]
+                                            Estad = Tup_Death[6]
+                                            cEp = Tup_Death[7]
+                                            eQp = Tup_Death[8]
+                                            nSe = Tup_Death[9]
+                                            cOntr = Tup_Death[10]
                                             print("\n"+"Dados do cliente:"+"\n")
                                             print("Código de cliente:",Codcli)
                                             print("Nome Fantasia:",Nome_Fantasia)
@@ -1208,98 +1254,143 @@ while (Maain_Loop == True):
                                             print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
                                             print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
                                             print("Contrato:",cOntr,"\n")
-                                            Tem_Nos_Dados += 1
-                                    if (Tem_Nos_Dados > 0):
-                                        Death_Angel = str(input("Deseja realmente excluir todos os dados do cliente? (s/n)"))
-                                        if (Death_Angel == "n") or (Death_Angel == "N"):
-                                            print("Operação cancelada!"+"\n")
-                                            Loop_Death == False
-                                            cc_Loop = True
-                                        if (Death_Angel == "s") or (Death_Angel == "S"):
-                                            pinky = True
-                                            while (pinky == True):
-                                                coddy = str(input("Digite o código de cliente que deseja remover:"))
-                                                if (coddy == "sair"):
-                                                    pinky = False
-                                                    Loop_Death = False
-                                                else:
-                                                    if coddy in Liscli:
-                                                        del Data_Dic[coddy]
-                                                        Log_Occur = loGOco(User_Current,4)
-                                                        Log_List.append(Log_Occur)
-                                                        print("Cliente removido com sucesso!"+"\n")
-                                                        cc_Loop = True
-                                                        Loop_Death = False
+                                            Death_Angel = str(input("Deseja realmente excluir todos os dados do cliente? (s/n)"))
+                                            if (Death_Angel == "n") or (Death_Angel == "N"):
+                                                print("Operação cancelada!"+"\n")
+                                                Loop_Death == False
+                                                cc_Loop = True
+                                            if (Death_Angel == "s") or (Death_Angel == "S"):
+                                                del Data_Dic[Codcli]
+                                                Log_Occur = loGOco(User_Current,4)
+                                                Log_List.append(Log_Occur)
+                                                print("Cliente removido com sucesso!"+"\n")
+                                                cc_Loop = True
+                                                Loop_Death = False
+                                        else:
+                                            Loop_Death == True
+                                            print("Cliente inexistente!"+"\n")
+                                    if (opa == "2"):
+                                        Fantasy = str(input("Digite o Nome Fantasia:"))
+                                        Tem_Nos_Dados = 0
+                                        Liscli = []
+                                        for val in Data_Dic.items():
+                                            vlw = val[1]
+                                            if (Mai_Min(Fantasy,vlw[0]) == True):
+                                                Liscli.append(val[0])
+                                                Codcli = val[0]
+                                                Nome_Fantasia = vlw[0]
+                                                Razao_Social = vlw[1]
+                                                Tele = vlw[2]
+                                                Nom = vlw[3]
+                                                Ende = vlw[4]
+                                                Cida = vlw[5]
+                                                Estad = vlw[6]
+                                                cEp = vlw[7]
+                                                eQp = vlw[8]
+                                                nSe = vlw[9]
+                                                cOntr = vlw[10]
+                                                print("\n"+"Dados do cliente:"+"\n")
+                                                print("Código de cliente:",Codcli)
+                                                print("Nome Fantasia:",Nome_Fantasia)
+                                                print("Razão Social:",Razao_Social)
+                                                print("Telefone:",Tele)
+                                                print("Pessoa de contato:",Nom)
+                                                print("Endereço:",Ende)
+                                                print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                                print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
+                                                print("Contrato:",cOntr,"\n")
+                                                Tem_Nos_Dados += 1
+                                        if (Tem_Nos_Dados > 0):
+                                            Death_Angel = str(input("Deseja realmente excluir todos os dados do cliente? (s/n)"))
+                                            if (Death_Angel == "n") or (Death_Angel == "N"):
+                                                print("Operação cancelada!"+"\n")
+                                                Loop_Death == False
+                                                cc_Loop = True
+                                            if (Death_Angel == "s") or (Death_Angel == "S"):
+                                                pinky = True
+                                                while (pinky == True):
+                                                    coddy = str(input("Digite o código de cliente que deseja remover:"))
+                                                    if (coddy == "sair"):
                                                         pinky = False
-                                                    else:
-                                                        print("Cliente iválido!")
-                                                        pinky = True
-
-                                    if (Tem_Nos_Dados == 0):
-                                        print ("Cliente com Nome Fantasia inexistente!"+"\n")
-                                        Loop_Death = True
-
-                                if (opa == "3"):
-                                    CITY = str(input("Digite a Cidade:"))
-                                    Tem_Nos_Dados = 0
-                                    Liscli = []
-                                    for val in Data_Dic.items():
-                                        vlw = val[1]
-                                        if (Mai_Min(CITY,vlw[5]) == True):
-                                            Liscli.append(val[0])
-                                            Codcli = val[0]
-                                            Nome_Fantasia = vlw[0]
-                                            Razao_Social = vlw[1]
-                                            Tele = vlw[2]
-                                            Nom = vlw[3]
-                                            Ende = vlw[4]
-                                            Cida = vlw[5]
-                                            Estad = vlw[6]
-                                            cEp = vlw[7]
-                                            eQp = vlw[8]
-                                            nSe = vlw[9]
-                                            cOntr = vlw[10]
-                                            print("\n"+"Dados do cliente:"+"\n")
-                                            print("Código de cliente:",Codcli)
-                                            print("Nome Fantasia:",Nome_Fantasia)
-                                            print("Razão Social:",Razao_Social)
-                                            print("Telefone:",Tele)
-                                            print("Pessoa de contato:",Nom)
-                                            print("Endereço:",Ende)
-                                            print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
-                                            print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
-                                            print("Contrato:",cOntr,"\n")
-                                            Tem_Nos_Dados += 1
-                                    if (Tem_Nos_Dados > 0):
-                                        Death_Angel = str(input("Deseja realmente excluir todos os dados cliente? (s/n)"))
-                                        if (Death_Angel == "n") or (Death_Angel == "N"):
-                                            print("Operação cancelada!"+"\n")
-                                            Loop_Death == False
-                                            cc_Loop = True
-                                        if (Death_Angel == "s") or (Death_Angel == "S"):
-                                            pinky = True
-                                            while (pinky == True):
-                                                coddy = str(input("Digite o código de cliente que deseja remover:"))
-                                                if (coddy == "sair"):
-                                                    pinky = False
-                                                    Loop_Death = False
-                                                    cc_Loop = True
-                                                else:
-                                                    if coddy in Liscli:
-                                                        del Data_Dic[coddy]
-                                                        Log_Occur = loGOco(User_Current,4)
-                                                        Log_List.append(Log_Occur)
-                                                        print("Cliente removido com sucesso!"+"\n")
-                                                        cc_Loop = True
                                                         Loop_Death = False
-                                                        pinky = False
                                                     else:
-                                                        print("Cliente iválido!")
-                                                        pinky = True
+                                                        if coddy in Liscli:
+                                                            del Data_Dic[coddy]
+                                                            Log_Occur = loGOco(User_Current,4)
+                                                            Log_List.append(Log_Occur)
+                                                            print("Cliente removido com sucesso!"+"\n")
+                                                            cc_Loop = True
+                                                            Loop_Death = False
+                                                            pinky = False
+                                                        else:
+                                                            print("Cliente iválido!")
+                                                            pinky = True
 
-                                    if (Tem_Nos_Dados == 0):
-                                        print ("Cliente inexistente na cidade escolhida!"+"\n")
-                                        Loop_Death = True                                      
+                                        if (Tem_Nos_Dados == 0):
+                                            print ("Cliente com Nome Fantasia inexistente!"+"\n")
+                                            Loop_Death = True
+
+                                    if (opa == "3"):
+                                        CITY = str(input("Digite a Cidade:"))
+                                        Tem_Nos_Dados = 0
+                                        Liscli = []
+                                        for val in Data_Dic.items():
+                                            vlw = val[1]
+                                            if (Mai_Min(CITY,vlw[5]) == True):
+                                                Liscli.append(val[0])
+                                                Codcli = val[0]
+                                                Nome_Fantasia = vlw[0]
+                                                Razao_Social = vlw[1]
+                                                Tele = vlw[2]
+                                                Nom = vlw[3]
+                                                Ende = vlw[4]
+                                                Cida = vlw[5]
+                                                Estad = vlw[6]
+                                                cEp = vlw[7]
+                                                eQp = vlw[8]
+                                                nSe = vlw[9]
+                                                cOntr = vlw[10]
+                                                print("\n"+"Dados do cliente:"+"\n")
+                                                print("Código de cliente:",Codcli)
+                                                print("Nome Fantasia:",Nome_Fantasia)
+                                                print("Razão Social:",Razao_Social)
+                                                print("Telefone:",Tele)
+                                                print("Pessoa de contato:",Nom)
+                                                print("Endereço:",Ende)
+                                                print("Cidade:",Cida,"   Estado:",Estad,"   CEP.:",cEp)
+                                                print("Equipamento / Modelo:",eQp,"   Número de Série:",nSe)
+                                                print("Contrato:",cOntr,"\n")
+                                                Tem_Nos_Dados += 1
+                                        if (Tem_Nos_Dados > 0):
+                                            Death_Angel = str(input("Deseja realmente excluir todos os dados cliente? (s/n)"))
+                                            if (Death_Angel == "n") or (Death_Angel == "N"):
+                                                print("Operação cancelada!"+"\n")
+                                                Loop_Death == False
+                                                cc_Loop = True
+                                            if (Death_Angel == "s") or (Death_Angel == "S"):
+                                                pinky = True
+                                                while (pinky == True):
+                                                    coddy = str(input("Digite o código de cliente que deseja remover:"))
+                                                    if (coddy == "sair"):
+                                                        pinky = False
+                                                        Loop_Death = False
+                                                        cc_Loop = True
+                                                    else:
+                                                        if coddy in Liscli:
+                                                            del Data_Dic[coddy]
+                                                            Log_Occur = loGOco(User_Current,4)
+                                                            Log_List.append(Log_Occur)
+                                                            print("Cliente removido com sucesso!"+"\n")
+                                                            cc_Loop = True
+                                                            Loop_Death = False
+                                                            pinky = False
+                                                        else:
+                                                            print("Cliente iválido!")
+                                                            pinky = True
+
+                                        if (Tem_Nos_Dados == 0):
+                                            print ("Cliente inexistente na cidade escolhida!"+"\n")
+                                            Loop_Death = True                                      
 
                                 
             #CONSULTA CLIENTE
@@ -1556,63 +1647,69 @@ while (Maain_Loop == True):
                 while (loop_Log == True):
                     print("***Consulta Log***"+"\n")
                     print("1 - Consultar por usuário")
-                    print("2 - Consultar por data"+"\n")
+                    print("2 - Consultar por data")
+                    print("sair - Sair"+"\n")
                     oPlog = str(input("OPÇÃO>"))
-
-                    if (oPlog == "1"):
-                        loop_user_log = True
-                        while (loop_user_log == True):
-                            print("\n")
-                            usrr = str(input("Digite o usuário:"))
-                            if (usrr not in User_Dic):
-                                loop_user_log = True
-                                print ("Usuário inexistente!"+"\n")
-                            if (usrr == "sair"):
-                                loop_user_log = False
-                                loop_Log = False
-                                print ("Operação cancelada!"+"\n")
-                            if (usrr in User_Dic):
+                    if (oPlog == "sair"):
+                        loop_Log = False
+                    else:
+                        if (oPlog != "1") and (oPlog != "2") and (oPlog != "sair"):
+                            loop_Log = True
+                            print("Opção inválida!"+"\n")
+                        if (oPlog == "1"):
+                            loop_user_log = True
+                            while (loop_user_log == True):
                                 print("\n")
-                                ppw = (usrr+":")
-                                for tt in Log_List:
-                                    if (ppw == tt[0]):
-                                        LogOPR(tt)
-                                Log_Occur = loGOco(User_Current,71)
-                                Log_List.append(Log_Occur)
-                                loop_user_log = False
-                                loop_Log = False
-                    if (oPlog == "2"):
-                        loop_Date_log = True
-                        while (loop_Date_log == True):
-                            print("\n"+"Favor não digitar o número '0' antes do Dia ou Mês."+"\n")
-                            DAY = str(input("Digite o Dia:"))
-                            if (DAY == "sair"):
-                                print("Operação cancelada!"+"\n")
-                                loop_Date_log = False
-                                loop_Log = False
-                            else:
-                                MONTH = str(input("Digite o Mês:"))
-                                YEAR = str(input("Digite o Ano:"))
-                                DMY = DAY+MONTH+YEAR
-                                dateok = 0
-                                print("\n")
-                                for data in Log_List:
-                                    dmy = data[1]
-                                    dmyexit = ""
-                                    conct = 0
-                                    for chrt in dmy:
-                                        if (chrt != " ") and (chrt != "/") and (conct == 0):
-                                            dmyexit += chrt
-                                        if (chrt == " "):
-                                            conct += 1
-                                    if (DMY == dmyexit):
-                                        LogOPR(data)
-                                        dateok += 1
-                                if (dateok == 0):
-                                    print("Não há log nesta data!"+"\n")
-                                    loop_Date_log = True
-                                if (dateok > 0):
+                                usrr = str(input("Digite o usuário:"))
+                                if (usrr not in User_Dic):
+                                    loop_user_log = True
+                                    print ("Usuário inexistente!"+"\n")
+                                if (usrr == "sair"):
+                                    loop_user_log = False
+                                    loop_Log = False
+                                    print ("Operação cancelada!"+"\n")
+                                if (usrr in User_Dic):
+                                    print("\n")
+                                    ppw = (usrr+":")
+                                    for tt in Log_List:
+                                        if (ppw == tt[0]):
+                                            LogOPR(tt)
                                     Log_Occur = loGOco(User_Current,71)
                                     Log_List.append(Log_Occur)
+                                    loop_user_log = False
+                                    loop_Log = False
+                        if (oPlog == "2"):
+                            loop_Date_log = True
+                            while (loop_Date_log == True):
+                                print("\n"+"Favor não digitar o número '0' antes do Dia ou Mês."+"\n")
+                                DAY = str(input("Digite o Dia:"))
+                                if (DAY == "sair"):
+                                    print("Operação cancelada!"+"\n")
                                     loop_Date_log = False
                                     loop_Log = False
+                                else:
+                                    MONTH = str(input("Digite o Mês:"))
+                                    YEAR = str(input("Digite o Ano:"))
+                                    DMY = DAY+MONTH+YEAR
+                                    dateok = 0
+                                    print("\n")
+                                    for data in Log_List:
+                                        dmy = data[1]
+                                        dmyexit = ""
+                                        conct = 0
+                                        for chrt in dmy:
+                                            if (chrt != " ") and (chrt != "/") and (conct == 0):
+                                                dmyexit += chrt
+                                            if (chrt == " "):
+                                                conct += 1
+                                        if (DMY == dmyexit):
+                                            LogOPR(data)
+                                            dateok += 1
+                                    if (dateok == 0):
+                                        print("Não há log nesta data!"+"\n")
+                                        loop_Date_log = True
+                                    if (dateok > 0):
+                                        Log_Occur = loGOco(User_Current,71)
+                                        Log_List.append(Log_Occur)
+                                        loop_Date_log = False
+                                        loop_Log = False

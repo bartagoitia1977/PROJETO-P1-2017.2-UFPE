@@ -1,10 +1,10 @@
 
 Codigo de Cliente: 1
 Nome Fantasia: FOTO PYTHON
-Razao Social: PYTHON PROGRAMAS LTDA.
-Telefone: (081) 3000-0000
-Pessoa de Contato: Boa constrictor
-Endereco: Rua Guido Van Rossum, 1994, Chao de Estrelas
-Cidade: Olinda   Estado: PE   CEP.: 51000-000
-Equipamento / Modelo: Fujifilm LP5700R  Numero de Serie: 3195555
-Contrato: S
+Razao Social: PYTHON SERV LTDA
+Telefone: (081) 2111-2222
+Pessoa de Contato: Bruno
+Endereco: Rua da Cruz, 666, Bairro Ponto Certo
+Cidade: Limoeiro   Estado: PE   CEP.: 51000-000
+Equipamento / Modelo: Fujifilm Frontier SLP800  Numero de Serie: 3066111
+Contrato: N
