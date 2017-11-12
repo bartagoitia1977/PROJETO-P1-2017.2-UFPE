@@ -8,3 +8,43 @@ Endereco: Rua da Cruz, 666, Bairro Ponto Certo
 Cidade: Limoeiro   Estado: PE   CEP.: 51000-000
 Equipamento / Modelo: Fujifilm Frontier SLP800  Numero de Serie: 3066111
 Contrato: N
+
+Codigo de Cliente: 2
+Nome Fantasia: CINE FOTO SIDERAL
+Razao Social: CINE FOTO SIDERAL LTDA
+Telefone: (064) 36315426
+Pessoa de Contato: ANDRE OU LUCELIO
+Endereco: RUA CAPITAO SERAFIM DE BARROS, 29
+Cidade: JATAI   Estado: GO   CEP.: 75800-018
+Equipamento / Modelo: FUJIFILM SLP800  Numero de Serie: 3065431
+Contrato: N
+
+Codigo de Cliente: 3
+Nome Fantasia: LIG FILMES
+Razao Social: LIG FILMES LTDA.
+Telefone: (081) 34566656
+Pessoa de Contato: LIDIANE OU FRANCISCO
+Endereco: RUA ELIZA CABRAL DE SOUZA, 35, CENTRO
+Cidade: CAMARAGIBE   Estado: PE   CEP.: 53401-320
+Equipamento / Modelo: FUJIFILM SLP800  Numero de Serie: 3068549
+Contrato: N
+
+Codigo de Cliente: 4
+Nome Fantasia: LIG FILMES
+Razao Social: LIG FILMES LTDA
+Telefone: (81) 3482-1673
+Pessoa de Contato: EDIMILSON
+Endereco: Av. Barão de Lucena, 438 - Centro
+Cidade: JABOATAO DOS GUARARAPES   Estado: PE   CEP.: 54110-000
+Equipamento / Modelo: FUJIFILM LP7100  Numero de Serie: 2674000031
+Contrato: N
+
+Codigo de Cliente: 5
+Nome Fantasia: ARTCOLLOR DIGITAL
+Razao Social: ARTCOLLOR SERV FOTOGR LTDA ME
+Telefone: (082) 33201102
+Pessoa de Contato: CARVALHO OU CRISTIANE
+Endereco: RUA CLETO CAMPELO, 70, JACINTINHO
+Cidade: MACEIO   Estado: AL   CEP.: 57041-000
+Equipamento / Modelo: FUJIFILM SLP800  Numero de Serie: 3060000
+Contrato: N
