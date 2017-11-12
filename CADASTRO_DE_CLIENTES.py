@@ -897,7 +897,7 @@ while (Maain_Loop == True):
                                                 print("11 Contrato")
                                                 print("12 Alterar todos os dados")
                                                 print("sair - Sair"+"\n")
-                                                Data_Opt = str(input("OPÇÃO>"))
+                                                Data_Opt = str(input("Digite a opção:"))
                                                 if (Data_Opt == "1") or (Data_Opt == "12"):
                                                     Nome_Fantasia = str(input("Nome Fantasia:"))
                                                 if (Data_Opt == "2") or (Data_Opt == "12"):
@@ -1002,7 +1002,7 @@ while (Maain_Loop == True):
                                     if (Tem_Nos_Dados > 0):
                                         pinky = True
                                         while (pinky == True):
-                                            coddy = str(input("Digite o cliente que deseja alterar:"))
+                                            coddy = str(input("Digite o código de cliente que deseja alterar:"))
                                             if (coddy == "sair"):
                                                 pinky = False
                                                 pre_lop = False
@@ -1047,7 +1047,7 @@ while (Maain_Loop == True):
                                                         print("10 Número de Série")
                                                         print("11 Contrato")
                                                         print("12 Alterar todos os dados"+"\n")
-                                                        Data_Opt = str(input("OPÇÃO>"))
+                                                        Data_Opt = str(input("Digite a opção:"))
                                                         if (Data_Opt == "1") or (Data_Opt == "12"):
                                                             Nome_Fantasia = str(input("Nome Fantasia:"))
                                                         if (Data_Opt == "2") or (Data_Opt == "12"):
@@ -1146,7 +1146,7 @@ while (Maain_Loop == True):
                                     if (Tem_Nos_Dados > 0):
                                         pinky = True
                                         while (pinky == True):
-                                            coddy = str(input("Digite o cliente que deseja alterar:"))
+                                            coddy = str(input("Digite o código de cliente que deseja alterar:"))
                                             if (coddy == "sair"):
                                                 print("Operação cancelada!"+"\n")
                                                 cc_Loop = True
@@ -1192,7 +1192,7 @@ while (Maain_Loop == True):
                                                         print("10 Número de Série")
                                                         print("11 Contrato")
                                                         print("12 Alterar todos os dados"+"\n")
-                                                        Data_Opt = str(input("OPÇÃO>"))
+                                                        Data_Opt = str(input("Digite a opção:"))
                                                         if (Data_Opt == "1") or (Data_Opt == "12"):
                                                             Nome_Fantasia = str(input("Nome Fantasia:"))
                                                         if (Data_Opt == "2") or (Data_Opt == "12"):

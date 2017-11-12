@@ -41,10 +41,10 @@ Contrato: N
 
 Codigo de Cliente: 5
 Nome Fantasia: ARTCOLLOR DIGITAL
-Razao Social: ARTCOLLOR SERV FOTOGR LTDA ME
+Razao Social: E. S. C. COSTA ME
 Telefone: (082) 33201102
 Pessoa de Contato: CARVALHO OU CRISTIANE
 Endereco: RUA CLETO CAMPELO, 70, JACINTINHO
 Cidade: MACEIO   Estado: AL   CEP.: 57041-000
-Equipamento / Modelo: FUJIFILM SLP800  Numero de Serie: 3060000
+Equipamento / Modelo: FUJIFILM SLP800  Numero de Serie: 3067480
 Contrato: N
